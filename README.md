@@ -12,15 +12,9 @@ numpy 1.24.3; matplotlib 3.7.1; pandas 1.5.3; nptdms 1.7.0 channel: conda forge
 
 **Parameters Interpretation:**
 
-  1). Default pre/middle/post time were set in line 13 & 14 with `tmin` representing start time of each period and `tmax` representing end time of each period. For example the default setting indicates pre time is from 0 to 180, stimulus time is from 180 to 1260 and the post time is from 1260 to 1440.
-
-If user wants to change the default time, please open this file and change the number inside.
-
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/edc676a2-626d-4f87-8d28-a2a0d56ae700)
+  1). Default pre/middle/post time were set in line 13 & 14 with `tmin` representing start time of each period and `tmax` representing end time of each period. For example the default setting indicates pre time is from 0 to 180, stimulus time is from 180 to 1260 and the post time is from 1260 to 1440. If user wants to change the default time, please change the number inside.
   
   2). Default sheet name of ROI.xlsx is set in line 34 as the image shows below. The dafault sheet names are based on stimulaus track of fish in left ROI and right ROI field.
-  ![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/8832f423-2cb9-4e0b-83d4-f7b115db174c)
-
 
 **Columns Interpretation:**
 
