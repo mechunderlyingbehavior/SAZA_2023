@@ -51,30 +51,12 @@ Before running the `User Script.py`, please make sure the following python modul
 
 **1. Folder preparation**
 
-    group your target .tdms file into one folder, name the folder as you want. Then copy the folder to this place:
-
-   ![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/cc144e1b-222e-4787-be2f-999bd1b4f46f)
-
-   ![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/34cf9de3-08af-4c67-a926-41d05b989b07)
-
-    Please save your folder into 'SAZA_2018_1'.
+    group your target .tdms file into one folder, name the folder as you want. Then copy the folder into `SAZA_2018_1`:
 
 **2. Set up program environment**
 
-    1) Windows search bar input text 'anoconda prompt', and click to open the prompt.
+    1) Windows search bar search `anoconda prompt`, and click to open the prompt.
 
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/810030b0-f9f3-4ec9-a690-df7943d83f99)
-
-    2) Enter text 'jupyter notebook' then click 'ENTER' button.
-
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/7d8e9873-8ac8-41ab-9fd3-9a2352a0153a)
+    2) Enter text `jupyter notebook` then click 'ENTER' button.
 
     3) Select folder and file :Desktop -> SAZA_2018_1 -> User Script.ipynb
-
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/219c90bd-0178-46c0-8f46-33b44127719e)
-
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/8b3cd697-df3d-4c7e-ad8a-a76edb1ac269)
-
-![image](https://github.com/Ivy421/SAZA_2018/assets/57535126/31e21403-6df8-491e-b405-c2ed41adef7e)
-
-
