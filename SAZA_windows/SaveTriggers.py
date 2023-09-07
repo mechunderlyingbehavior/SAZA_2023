@@ -145,5 +145,3 @@ def SaveTriggers(data_folder1,Tmin, Tmax, Bin_Lengths):
 
     # export as csv
     df.to_csv('%s/%s.csv' % (save_folder, filename), float_format= '%.12f', index=False, header=colnames)
-
-SaveTriggers('t1',0,1000,Bin_Lengths=['0-1000', '1000-2000', '2000-3000', '3000-5000','5000-8000','8000-11000', '11000-15000', '15000-20000'])
