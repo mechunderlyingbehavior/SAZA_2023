@@ -10,12 +10,21 @@ def ROIData(data_folder):
     import xlsxwriter
 
     print('ROIData function BEGIN ------')
+        
+    ## define var
     tmin = [0,180,1260]
     tmax = [180,1260,1440]
-    
+    filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
+    ROI_left = np.array([[0,50], [0,75], [15,50], [15,75]])
+    ROI_right = np.array([[15,50],[15,75],[30,50],[30,75]])
+    ROI_box = [ROI_left,ROI_right]
+    #ROI_top = np.array([[0,0],[0,50],[30,0],[30,50]])
+    #ROI_box = [ROI_left,ROI_right,ROI_top]
     pre_path = os.getcwd()
     data_f = '%s/%s/FishData' %(pre_path,data_folder)
     ROI_folder = '%s/%s' %(pre_path,data_folder)
+    filename = filename.reshape(int(len(filename)/3),3)
+    
     # Define function to sort .csv files in order
     _nsre = re.compile('([0-9]+)')
     def natural_sort_key(s):
@@ -31,17 +40,13 @@ def ROIData(data_folder):
                                    'MeanVIn','MeanVOut','StdVIn','StdVOut','ENTRIES',\
                                    'Mean T per entry','% time in record','sanity'])
 
-    ## define var
-    filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
-    filename = filename.reshape(2,3)
-    ROI_box = [np.array([[0,50], [0,75], [15,50], [15,75]]),np.array([[15,50],[15,75],[30,50],[30,75]])]
     # cal and make file
     if os.path.exists(ROI_folder + '/%s_ROI.xlsx'%data_folder):
         os.remove(ROI_folder+'/%s_ROI.xlsx'% data_folder)
-    # left -> right
 
     with pd.ExcelWriter(ROI_folder + '/%s_ROI.xlsx'%data_folder,engine = 'xlsxwriter') as writer:
-        for m in range(2):
+        for m in range(len(ROI_box)):
+            # m indicates the programming ROI 
             Coordinates = ROI_box[m]
             for n in range (len(tmin)):
                 TMin, TMax = tmin[n], tmax[n]
@@ -83,16 +88,13 @@ def ROIData(data_folder):
                     else:
                         Mean_t_per_entry = round(TIn/entry,5)
 
-                    # convert to python 3.4: both mean and sd functions exist in statistics module
                     data = data.append({'Fish Number': index, 'TIn':TIn, 'TOut':TOut, 'BoundaryCrossings':Changes,\
                             'MeanVIn':np.mean(VIn), 'MeanVOut':np.mean(VOut),\
                             'StdVIn':np.std(VIn), 'StdVOut':np.std(VOut),'ENTRIES':entry,\
                             'Mean T per entry': Mean_t_per_entry,'% time in ROI':perc_time_rec,\
                             'sanity':sanity}, ignore_index=True)
-
-
-                #if not os.path.exists(excel_name):
-
+                
+                # when done each ROI, save data to specific sheet
                 data.to_excel(writer, sheet_name=filename[m][n], index = False)
                 worksheet = writer.sheets[filename[m][n]]
                 worksheet.set_column('A:D',10)
