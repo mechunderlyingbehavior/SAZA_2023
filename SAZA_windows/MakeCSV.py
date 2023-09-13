@@ -7,7 +7,7 @@ def makecsv(data_folder):
     from GetFishTrace import GetFishTrace
 
     #data_folder = input("input the folder that contains .tdms file:")
-    fullpath = 'C:/Users/ASMLabUser1/Desktop/SAZA_2018_1/%s' % data_folder
+    fullpath = '%s/%s' %(os.getcwd(),data_folder)
 
 
                                             ####################
