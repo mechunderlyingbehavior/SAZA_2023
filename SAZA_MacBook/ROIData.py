@@ -35,7 +35,7 @@ def ROIData_edit(data_folder,TMIN,TMAX):
     #define file name by time section, default ROI boxes are left and right
     for region in ['L','R']:
         for i in range(len(tmin)):
-            filename = np.append(filename,['%s_to_%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
+            filename = np.append(filename,['%sto%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
     filename = filename.reshape(len(ROI_box),len(tmin))
     #filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
 
@@ -150,7 +150,7 @@ def ROIData_180sec(data_folder):
     #define file name by time section, default ROI boxes are left and right
     for region in ['L','R']:
         for i in range(len(tmin)):
-            filename = np.append(filename,['%s_to_%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
+            filename = np.append(filename,['%sto%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
     filename = filename.reshape(len(ROI_box),len(tmin))
     #filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
 
@@ -265,7 +265,7 @@ def ROIData_std(data_folder):
     #define file name by time section, default ROI boxes are left and right
     for region in ['L','R']:
         for i in range(len(tmin)):
-            filename = np.append(filename,['%s_to_%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
+            filename = np.append(filename,['%sto%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
     filename = filename.reshape(len(ROI_box),len(tmin))
     #filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
 
@@ -367,7 +367,7 @@ def ROIData_basic(data_folder):
     ## define var
     tmin = [0,180,1260]
     tmax = [180,1260,1440]
-    filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
+    #filename = np.array(['pre_left','STIM_left','post_left','pre_right','STIM_right','post_right'])
     ROI_left = np.array([[0,50], [0,75], [15,50], [15,75]])
     ROI_right = np.array([[15,50],[15,75],[30,50],[30,75]])
     ROI_box = [ROI_left,ROI_right]
@@ -376,7 +376,12 @@ def ROIData_basic(data_folder):
     pre_path = os.getcwd()
     data_f = '%s/%s/FishData' %(pre_path,data_folder)
     ROI_folder = '%s/%s' %(pre_path,data_folder)
-    filename = filename.reshape(int(len(filename)/3),3)
+    
+    filename = np.array([])
+    for region in ['L','R']:
+        for i in range(len(tmin)):
+            filename = np.append(filename,['%sto%s_%s'%(str(tmin[i]),str(tmax[i]),region)])
+    filename = filename.reshape(len(ROI_box),len(tmin))
     
     # Define function to sort .csv files in order
     _nsre = re.compile('([0-9]+)')
