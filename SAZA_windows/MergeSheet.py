@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np
@@ -15,14 +15,15 @@ import xlsxwriter
 import glob
 
 
-# In[3]:
+# In[5]:
 
 
-stim_folder = input('please input stimulus folder name:')
-control_folder = input('please input control folder name:')
+stim_folder = input('Input folder name which have STIMULUS in left ROI:')
+control_folder = input('Input folder name which have CONTROL in left ROI:')
+flag = input('if doing stimulus merging, input 1, control merging input 0:')
 
 
-# In[4]:
+# In[6]:
 
 
 stimpath = os.getcwd()+'/'+ stim_folder
@@ -37,7 +38,7 @@ print('stimulus files:\n',stimfiles)
 print('control files:\n',confiles)
 
 
-# In[5]:
+# In[11]:
 
 
 merge_sheet_name_list = []
@@ -56,25 +57,36 @@ for i in range(len(stimfiles)):
     #print(stimsheetnames)
     for j in range(int(len(stimsheetnames)/2)):
         pairmerge = pd.DataFrame()
-        stim_sheet_value = pd.read_excel(stimfiles[i],sheet_name=stimsheetnames[j])
-        con_sheet_value = pd.read_excel(confiles[i],sheet_name=consheetnames[int(len(stimsheetnames)/2+j)])
-        pairmerge = pd.concat([stim_sheet_value,con_sheet_value],axis = 0)
+        
+        if flag == '1':
+            stim_sheet_value = pd.read_excel(stimfiles[i],sheet_name=stimsheetnames[j])
+            con_sheet_value = pd.read_excel(confiles[i],sheet_name=consheetnames[int(len(stimsheetnames)/2+j)])
+            pairmerge = pd.concat([stim_sheet_value,con_sheet_value],axis = 0)
+            
+        elif flag == '0':
+            print('doing control group merging---')
+            stim_sheet_value = pd.read_excel(stimfiles[i],sheet_name=stimsheetnames[int(len(stimsheetnames)/2+j)])
+            con_sheet_value = pd.read_excel(confiles[i],sheet_name=consheetnames[j])
+            pairmerge = pd.concat([stim_sheet_value,con_sheet_value],axis = 0)
+        
         merge_sheet_name = stimsheetnames[j].split('_')[0]
         merge_sheet_name_list.append(str(merge_sheet_name))
         dataframes_list.append(pairmerge)
     #print(len(merge_sheet_name_list))
     #print(len(dataframes_list))
-    with pd.ExcelWriter(os.getcwd() + '/'+ merge_file_name, engine = 'xlsxwriter') as writer:
+    with pd.ExcelWriter(os.getcwd() + '/Merging.xlsx', engine = 'xlsxwriter') as writer:
         for k in range(len(dataframes_list)):
             dataframes_list[k].to_excel(writer ,sheet_name = merge_sheet_name_list[k] ,index = False ,header = True)
             
 print('MERGING DONE!!!')        
 
 
-# In[ ]:
+# In[8]:
 
 
-
+if flag == '0':
+    print('doing control group merging')
+    
 
 
 # In[ ]:
