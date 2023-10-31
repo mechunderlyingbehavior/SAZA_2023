@@ -24,7 +24,7 @@ def SaveTriggers(data_folder1,Tmin, Tmax, Bin_Lengths):
     # root.withdraw()
     # data_folder = tkFileDialog.askdirectory(parent=root,initialdir="/",title='Please select folder containing fish data:')
     # data_folder = '%s/FishData' % data_folder
-    data_folder = '%s/%s/FishData'%(os.getcwd(),data_folder1)
+    data_folder = '%s/%s/FishData'%(os.getcwd(),data_folder)
 
     # Define function to sort .csv files in order
     _nsre = re.compile('([0-9]+)')
