@@ -56,8 +56,8 @@ def SaveTriggers(data_folder1,Tmin, Tmax, Bin_Lengths):
             result = np.bincount(result, minlength=len(Bin_Lengths)+1)
             result = np.delete(result, 0)
             result = result.astype('S15')
-            result = np.insert(result, 0, "Fish %s %s" % (i, ROI))
-            result = np.append(result, len(np.nonzero(trigger)[0]) * 1/(File['Sampling_Rate'][1]))
+            result = np.insert(result, 0, "Fish %s %s" % (i, ROI)).astype(str)
+            result = np.append(result, len(np.nonzero(trigger)[0]) * 1/(File['Sampling_Rate'][1])).astype(str)
             df.loc[len(df)] = result
         return result
 
