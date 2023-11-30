@@ -63,8 +63,9 @@ def Sparklines(data_folder):
         plt.fill_between(x_time, 0, stim, where=stim>0, color="orange")
         plt.plot(x_time, ctrl, color='blue', label="ctrl")
         plt.fill_between(x_time, 0, ctrl, where=ctrl<0, color="blue")
+        plt.title('Fish %s'%str(i+1))
         plt.legend(loc='upper right',prop = {'size':20})
         # save figure
-        filename = save_folder+'/SparkFigures/Sparklines_Fish'+str(i+1)+'.jpg'
-        plt.savefig(filename, bbox_inches='tight')
+        filename = save_folder+'/SparkFigures/Sparklines_Fish'+str(i+1)+'.jpeg'
+        plt.savefig(filename,format='jpeg', bbox_inches='tight')
         plt.show()
